@@ -1,0 +1,5 @@
+[theme]
+backgroundColor = "#1e3350"  # Cor de fundo
+secondaryBackgroundColor = "#e74c3c" 
+textColor = "#ffffff"  # Cor do texto principal
+font = "sans serif"  # Escolha da fonte
