@@ -3,14 +3,22 @@ import pandas as pd
 import joblib
 import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
 from streamlit_option_menu import option_menu
+
+image_paths = ["assets/espacamento.png", "assets/gps.png", "assets/espacamento.png", "assets/nosso-time.png"]
+cols = st.columns(len(image_paths))
+
+image_path = "assets/seta.png"
+image = Image.open(image_path)
+
 
 model = joblib.load('modelofinal.joblib')
 
 selected = option_menu(
         menu_title=None,
-        options=["Modelo Preditivo", "Como Utilizar"],
-        icons=["rocket", "patch-question"],
+        options=["Página Principal", "Modelo Preditivo", "Como Utilizar"],
+        icons=["compass", "rocket", "patch-question"],
         orientation="horizontal",
         styles={
             "nav-link": {
@@ -20,8 +28,14 @@ selected = option_menu(
         }
     )
 
+if selected == "Página Principal":
+    for image_path in image_paths:
+        image = Image.open(image_path)
+        st.image(image, use_column_width=True)
+
 if selected == "Modelo Preditivo":
         uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
+        st.image(image, use_column_width=True)
 
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
@@ -81,7 +95,7 @@ if selected == "Modelo Preditivo":
                 num_medicoes_categoria = tabela_categoria[tabela_categoria['tipo_predito']==categoria].shape[0]
                 st.write(f"Número de medições na categoria '{categoria}': {num_medicoes_categoria}")
 
-           
+    
 if selected == "Como Utilizar":
     st.write("""
     Para que o modelo preditivo funcione corretamente, o arquivo CSV deve seguir os seguintes requisitos:
@@ -104,3 +118,5 @@ if selected == "Como Utilizar":
 
     Após carregar o arquivo CSV, o modelo processará os dados, identificará possíveis anomalias, e classificará os clientes nas diferentes categorias de análise.
     """)
+
+    st.image(image, use_column_width=True)
