@@ -12,7 +12,6 @@ cols = st.columns(len(image_paths))
 image_path = "assets/logo.png"
 image = Image.open(image_path)
 
-
 model = joblib.load('modelofinal.joblib')
 
 selected = option_menu(
@@ -35,8 +34,6 @@ if selected == "Página Principal":
 
 if selected == "Modelo Preditivo":
         uploaded_file = st.file_uploader("Escolha um arquivo CSV", type="csv")
-        st.image(image, use_column_width=True)
-
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
 
@@ -94,7 +91,7 @@ if selected == "Modelo Preditivo":
                 
                 num_medicoes_categoria = tabela_categoria[tabela_categoria['tipo_predito']==categoria].shape[0]
                 st.write(f"Número de medições na categoria '{categoria}': {num_medicoes_categoria}")
-
+        st.image(image, use_column_width=True)
     
 if selected == "Como Utilizar":
     st.write("""
