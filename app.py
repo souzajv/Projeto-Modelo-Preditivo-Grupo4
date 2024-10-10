@@ -9,7 +9,7 @@ from streamlit_option_menu import option_menu
 image_paths = ["assets/espacamento.png", "assets/gps.png", "assets/espacamento.png", "assets/nosso-time.png"]
 cols = st.columns(len(image_paths))
 
-image_path = "assets/seta.png"
+image_path = "assets/logo.png"
 image = Image.open(image_path)
 
 
